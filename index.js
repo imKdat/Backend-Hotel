@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const sequelize = require('./config/database');
 const errorHandler = require('./middlewares/errorHandler');
 const authRouter = require('./routes/authRouter');
+const roomRouter = require('./routes/roomRouter');
 require('dotenv').config();
 const app = express();
 app.use(cors());
@@ -27,6 +28,7 @@ async function startServer() {
 
 startServer();
 app.use("/api/authentication",authRouter)
+app.use("/api/room",roomRouter)
 app.use(errorHandler)
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

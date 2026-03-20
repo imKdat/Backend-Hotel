@@ -33,9 +33,26 @@ class RoomRepository extends BaseRepository {
                 room_number: roomNumber
             }
         })
-
     }
-
+    async findByRoomID(roomId){
+        return this.model.findOne({
+            where:{
+                id: roomId
+            },
+            include: [
+                {
+                    model: models.room_types,
+                    as: "room_type",
+                    attributes: ["id", "name"]
+                },
+                {
+                    model: models.room_status,
+                    as: "status",
+                    attributes: ["id", "name"]
+                }
+            ]
+        })
+    }
 }
 
 module.exports = new RoomRepository();
