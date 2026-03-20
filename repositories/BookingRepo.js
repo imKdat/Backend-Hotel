@@ -8,23 +8,19 @@ class BookingRepository extends BaseRepository {
     }
 
     async getAllBookings() {
-
         return await this.model.findAll({
             include: [
-                { model: models.customers, as: "customer" },
-                { model: models.rooms, as: "room" },
-                { model: models.booking_status, as: "status" }
+                {model: models.customers, as: "customer", attributes: ["full_name"]},
+                {model: models.rooms, as: "room",attributes: ["room_number"]},
+                {model: models.booking_status, as: "status", attributes: ["name"]},
             ]
         });
-
     }
 
     async findByCustomer(customerId) {
-
         return await this.model.findAll({
-            where: { customer_id: customerId }
+            where: {customer_id: customerId}
         });
-
     }
 
 }

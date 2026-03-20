@@ -42,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     sequelize,
     tableName: 'bookings',
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: "PRIMARY",

@@ -14,6 +14,13 @@ class CustomerRepository extends BaseRepository {
             ]
         });
     }
+    async getAllCustomers(id) {
+        return await this.model.findAll({
+            include: [
+                { model: models.users, as: "user" ,attributes: ["username", "email"] },
+            ]
+        });
+    }
 
 }
 
